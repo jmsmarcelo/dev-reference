@@ -5,7 +5,7 @@ Este repositório reúne conceitos fundamentais da computação, como representa
 ## 📂 Índice
 
 - [Linguagem C](/references/c/README.md)
-  - [ASCII, Binário e Operadores Bit a Bit](/references/c/ascii-binary-bitwise.md)
+  - [🧠 Representação de Dados e Manipulação de Bits](/references/c/data-representation.md)
 
 ## 📜 Licença
 
