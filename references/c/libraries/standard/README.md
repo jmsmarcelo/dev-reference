@@ -7,7 +7,7 @@ O uso dessas bibliotecas evita que o programador tenha que reinventar funcionali
 
 | Biblioteca | Breve Descrição |
 | --- | --- |
-| `<stdio.h>` | Entrada e saída padrão (ex: `printf`, `scanf`, manipulação de arquivos). |
+| [`<stdio.h>`](/references/c/libraries/standard/stdio_h.md) | Entrada e saída padrão (ex: `printf`, `scanf`, manipulação de arquivos). |
 | `<stdlib.h>` | Funções utilitárias (alocação dinâmica, conversões, geração de números pseudoaleatórios). |
 | `<string.h>` | Manipulação de strings e blocos de memória (`strlen`, `strcpy`, `memcpy`, etc.). |
 | `<ctype.h>` | Funções para classificação e transformação de caracteres (`isalpha`, `toupper`, etc.). |

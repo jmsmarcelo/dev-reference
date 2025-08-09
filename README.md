@@ -6,6 +6,7 @@ Este repositório reúne conceitos fundamentais da computação, como representa
 
 - [Linguagem C](/references/c/README.md)
   - [Bibliotecas Padrão](/references/c/libraries/standard/README.md)
+    - [<stdio.h>](/references/c/libraries/standard/stdio_h.md)
   - [Representação de Dados e Manipulação de Bits](/references/c/data-representation.md)
 
 ## 📜 Licença
