@@ -64,16 +64,20 @@ Em C, o suporte a UTF-8 é gerenciado principalmente pelas funções de tempo de
 
 ## Funções úteis
 
+### Converter um caractere (char) para uma string binária de 8 bits
+
 ```c
-// Converter um caractere (char) para uma string binária de 8 bits
 void char_to_bin(char c, char *bin) {
     for(int i = 0; i < 8; i++) {
         bin[i] = ((c >> (7 - i)) & 1) ? '1' : '0';
     }
     bin[8] = '\0';
 }
+```
 
-// Converter uma string binário de 8 bits para um caractere
+### Converter uma string binário de 8 bits para um caractere
+
+```c
 unsigned char bin_to_char(unsigned char *bin) {
     unsigned char c = 0;
     for(int i = 0; i < 8; i++) {
@@ -82,8 +86,11 @@ unsigned char bin_to_char(unsigned char *bin) {
     }
     return c;
 }
+```
 
-// Imprimir a tabela binária completa de 8 bits (0 a 255)
+### Imprimir a tabela binária completa de 8 bits (0 a 255)
+
+```c
 void print_binary_table_8bits() {
     printf("DEC\tBIN\tCHAR\n");
     char bin[9];
@@ -93,28 +100,45 @@ void print_binary_table_8bits() {
         printf("%3d\t%s\t%c\n", i, bin, c);
     }
 }
+```
 
-// Obtem o valor do bit na posição 'pos' (0-7)
+### Obtem o valor do bit na posição 'pos' (0-7)
+
+```c
 uint8_t get_bit(uint8_t byte, int pos) {
     return (byte >> pos) & 1;
 }
+```
 
-//Defini o bit na posição 'pos' como 1
+### Defini o bit na posição 'pos' como 1
+
+```c
 uint8_t set_bit(uint8_t byte, int pos) {
     return byte | (1 << pos);
 }
+```
 
-// Limpa o bit na posição 'pos' (define como 0)
+### Limpa o bit na posição 'pos' (define como 0)
+
+```c
 uint8_t clear_bit(uint8_t byte, int pos) {
     return byte & ~(1 << pos);
 }
+```
 
-// Inverte o bit na posição 'pos'
+### Inverte o bit na posição 'pos'
+
+```c
 uint8_t toggle_bit(uint8_t byte, int pos) {
     return byte ^ (1 << pos);
 }
+```
 
-// Conta o número real de símbolos na tela (ideal para caracteres UTF-8), ao contrario de strlen() que conta o número de bytes e não caracteres
+### Conta o número real de símbolos na tela
+
+*Ideal para caracteres UTF-8, ao contrario de strlen() que conta o número de bytes e não caracteres*
+
+```c
 size_t string_len(const unsigned char *str) {
     size_t count = 0;
     while(*str) {
@@ -123,8 +147,11 @@ size_t string_len(const unsigned char *str) {
     }
     return count;
 }
+```
 
-// Obtem o próximo caractere UTF-8
+### Obtem o próximo caractere UTF-8
+
+```c
 const unsigned char *utf8_next_char(const unsigned char *p) {
     if(*p == 0) return p; // fim da string
 
@@ -137,8 +164,11 @@ const unsigned char *utf8_next_char(const unsigned char *p) {
 
     return p + ext + 1;
 }
+```
 
-// Itera e imprime cada caractere UTF-8
+### Itera e imprime cada caractere UTF-8
+
+```c
 void utf8_print_chars(const unsigned char *str) {
     const unsigned char *p = str;
     while(*p) {
@@ -151,23 +181,23 @@ void utf8_print_chars(const unsigned char *str) {
         printf("\n");
     }
 }
+```
 
-// Converte uma string binária/textual para representação hexadecimal ASCII
+### Converte uma string binária/textual para representação hexadecimal ASCII
+
+```c
 size_t str_to_hex(const char *str, char **hex, const char *sep) {
     const char *hexs = "0123456789ABCDEF";
-    size_t hex_cap = strlen(str);
-    if(sep) hex_cap *= 3;
-    else hex_cap = hex_cap * 2 + 1;
+
+    size_t str_len = strlen(str);
+    size_t hex_cap = sep ? str_len * 3 : str_len * 2 + 1;
     size_t limit = hex_cap - 1;
     size_t pos = 0;
-    char *ptr;
-    if(*hex) {
-        ptr = realloc(*hex, hex_cap);
-    } else {
-        ptr = malloc(hex_cap);
-    }
+
+    char *ptr = *hex ? realloc(*hex, hex_cap) : malloc(hex_cap);
     if(!ptr) return pos;
     *hex = ptr;
+
     while(*str && pos < limit) {
         (*hex)[pos++] = hexs[(*str >> 4) & 0x0F];
         (*hex)[pos++] = hexs[*str & 0x0F];
@@ -177,8 +207,11 @@ size_t str_to_hex(const char *str, char **hex, const char *sep) {
     (*hex)[pos] = '\0';
     return pos;
 }
+```
 
-// Converte uma string de dígintos hexadecimais de volta para binário/textual
+### Converte uma string de dígintos hexadecimais de volta para binário/textual
+
+```c
 size_t hex_to_str(const char *hex, char **str, const char *sep) {
     size_t hex_len = strlen(hex);
     size_t str_cap = sep ? (hex_len + 1) / 3 + 1 : hex_len / 2 + 1;
