@@ -151,4 +151,57 @@ void utf8_print_chars(const unsigned char *str) {
         printf("\n");
     }
 }
+
+// Converte uma string binária/textual para representação hexadecimal ASCII
+size_t str_to_hex(const char *str, char **hex, const char *sep) {
+    const char *hexs = "0123456789ABCDEF";
+    size_t hex_cap = strlen(str);
+    if(sep) hex_cap *= 3;
+    else hex_cap = hex_cap * 2 + 1;
+    size_t limit = hex_cap - 1;
+    size_t pos = 0;
+    char *ptr;
+    if(*hex) {
+        ptr = realloc(*hex, hex_cap);
+    } else {
+        ptr = malloc(hex_cap);
+    }
+    if(!ptr) return pos;
+    *hex = ptr;
+    while(*str && pos < limit) {
+        (*hex)[pos++] = hexs[(*str >> 4) & 0x0F];
+        (*hex)[pos++] = hexs[*str & 0x0F];
+        str++;
+        if(sep && *str) (*hex)[pos++] = *sep;
+    }
+    (*hex)[pos] = '\0';
+    return pos;
+}
+
+// Converte uma string de dígintos hexadecimais de volta para binário/textual
+size_t hex_to_str(const char *hex, char **str, const char *sep) {
+    size_t hex_len = strlen(hex);
+    size_t str_cap = sep ? (hex_len + 1) / 3 + 1 : hex_len / 2 + 1;
+    size_t pos = 0;
+    char *ptr = *str ? realloc(*str, str_cap) : malloc(str_cap);
+    if(!ptr) return pos;
+    *str = ptr;
+    while(*hex && pos + 1 < str_cap) {
+        if(sep && *hex == *sep) {
+            hex++;
+            continue;
+        }
+        unsigned char nibbles[2] = {0, 0};
+        for(int i = 0; i < 2; i++) {
+            if(*hex >= '0' && *hex <= '9') nibbles[i] = *hex - '0';
+            else if(*hex >= 'A' && *hex <= 'F') nibbles[i] = *hex - 'A' + 10;
+            else if(*hex >= 'a' && *hex <= 'f') nibbles[i] = *hex - 'a' + 10;
+            else break;
+            hex++;
+        }
+        (*str)[pos++] = (char)((nibbles[0] << 4) | nibbles[1]);
+    }
+    (*str)[pos] = '\0';
+    return pos;
+}
 ```
