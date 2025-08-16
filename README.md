@@ -10,6 +10,8 @@ Este repositório reúne conceitos fundamentais da computação, como representa
   - [Representação de Dados e Manipulação de Bits](/docs/c/data-representation.md)
 - Windows
   - [WinAPI](/docs/windows/winapi/README.md)
+- Linux
+  - [POSIX](/docs/linux/posix/README.md)
 
 ## 📜 Licença
 
