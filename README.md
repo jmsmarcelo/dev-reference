@@ -8,6 +8,7 @@ Este repositório reúne conceitos fundamentais da computação, como representa
   - [Bibliotecas Padrão](/docs/c/standard-libraries/README.md)
     - [<stdio.h>](/docs/c/standard-libraries/stdio_h.md)
   - [Representação de Dados e Manipulação de Bits](/docs/c/data-representation.md)
+- [SQL](/docs/sql/README.md)
 - Windows
   - [WinAPI](/docs/windows/winapi/README.md)
 - Linux

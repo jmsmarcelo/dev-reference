@@ -28,5 +28,5 @@ O objetivo aqui é destacar os pontos de entrada mais comuns para quem deseja pr
 | `<sys/msg.h>` | Filas de mensagens System V |
 | `<sys/sem.h>` | Semáforos System V |
 | `<dlfcn.h>` | Carregamento dinâmico de bibliotecas (`dlopen`, `dlsym`, `dlclose`) |
-| `<time.h / sys/time.h>` | Tempo e temporizadores |
+| `<time.h>` / `<sys/time.h>` | Tempo e temporizadores |
 | `<sys/resource.h>` | Limites e prioridades de processos |
